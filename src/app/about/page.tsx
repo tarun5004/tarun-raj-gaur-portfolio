@@ -1,0 +1,7 @@
+import Link from 'next/link';
+import { Footer } from '@/shared/components/Footer';
+import { SiteHeader } from '@/shared/components/SiteHeader';
+
+export default function AboutPage() {
+  return <main className="portfolio-page"><div className="page-shell"><SiteHeader /><section className="about-page"><p className="eyebrow">About / Tarun Raj Gaur</p><h1>A builder learning to make complexity legible.</h1><div className="about-grid"><div><p className="about-lead">I work across frontend, backend, DevOps, and AI engineering, with a particular interest in the boundaries where systems become secure, observable, and useful.</p><p>My current work moves between an MCA at COER University, production-shaped projects, and the daily practice of finding the small assumption that makes a large system unreliable.</p><Link className="button button-coral" href="/notes">Read the field notes <span aria-hidden="true">↗</span></Link></div><div className="timeline"><div><span>2025 - 2027</span><strong>MCA / COER University</strong><p>Roorkee</p></div><div><span>2021 - 2024</span><strong>BCA / IIMT University</strong><p>Meerut / CGPA 6.75</p></div><div><span>Now</span><strong>Full Stack + DevOps + AI Engineering</strong><p>Sheriyans Coding School</p></div></div></div></section><Footer /></div></main>;
+}
