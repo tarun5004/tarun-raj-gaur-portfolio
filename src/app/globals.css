@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+@import './studio.css';
 
 :root { --paper: #f2f0e9; --ink: #171817; --muted: #6b6d68; --line: #c9c8c0; --coral: #f26d4f; --blue: #9ab7c7; --lime: #c1d47a; --yellow: #f0c76a; --violet: #b9a9cf; --serif: 'Playfair Display', Georgia, serif; --sans: 'DM Sans', Arial, sans-serif; --mono: 'DM Mono', monospace; }
 * { box-sizing: border-box; }
