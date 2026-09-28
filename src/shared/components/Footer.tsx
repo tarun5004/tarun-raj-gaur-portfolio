@@ -9,6 +9,7 @@ export function Footer({ publication = false }: { publication?: boolean }) {
       </div>
       <div className="footer-links">
         <a href="https://github.com/tarun5004" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/tarun-raj-bab024381/" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="mailto:hello@tarunrajgaur.dev">Email</a>
         <Link href={publication ? '/' : '/notes'}>{publication ? 'Portfolio ->' : 'Read notes ->'}</Link>
       </div>

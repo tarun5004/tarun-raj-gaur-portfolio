@@ -1,0 +1,5 @@
+import Link from 'next/link';
+
+export default function NotePage({ params }: { params: { slug: string } }) {
+  return <main className="blog-page"><div className="blog-shell"><header><Link href="/" className="brand">Field Notes <span>/ Tarun Raj Gaur</span></Link><nav><Link href="/">Latest</Link><Link href="/studio">Studio</Link></nav></header><article className="note"><p>Field Notes / {params.slug}</p><h1>{params.slug.replaceAll('-', ' ')}</h1><p className="note-lead">A working note about making production software more legible, reliable, and useful.</p><p>These articles are the editorial surface of the portfolio: a place to explain a system boundary, document a failure mode, or make an engineering decision easier for another person to inspect.</p><h2>The useful question</h2><p>What has to remain true when the happy path ends? The answer is usually found in the policy, the data boundary, the queue, or the evidence left behind after the request is complete.</p><Link href="/">Back to the archive {'->'}</Link></article></div></main>;
+}

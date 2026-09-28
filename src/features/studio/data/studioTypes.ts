@@ -8,6 +8,8 @@ export type StudioPost = {
   topic: string;
   author: string;
   body: string;
+  assetUrl: string;
+  assetType: 'image' | 'pdf' | '';
   status: StudioStatus;
   token: string;
   createdAt: string;

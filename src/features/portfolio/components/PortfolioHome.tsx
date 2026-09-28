@@ -32,9 +32,9 @@ export function PortfolioHome() {
 
         <section className="signal-strip" aria-label="Current focus">
           <span>Currently thinking about</span>
-          <strong>AI gateways</strong><span className="strip-dot">/</span>
-          <strong>queues</strong><span className="strip-dot">/</span>
-          <strong>tenant boundaries</strong><span className="strip-dot">/</span>
+          <strong>GenAI workflows</strong><span className="strip-dot">/</span>
+          <strong>RAG + MCP</strong><span className="strip-dot">/</span>
+          <strong>deployment systems</strong><span className="strip-dot">/</span>
           <strong>developer tools</strong>
         </section>
 
@@ -81,7 +81,7 @@ export function PortfolioHome() {
         <section className="capabilities-section">
           <div><p className="eyebrow">The toolkit</p><h2>Three ways I tend to be useful.</h2></div>
           <div className="capability-grid">
-            <div><span>01</span><h3>Govern AI</h3><p>Policy, PII, RBAC, rate limiting, provider routing, and auditability.</p></div>
+            <div><span>01</span><h3>Build AI workflows</h3><p>Prompt engineering, RAG, MCP, provider routing, evaluation, and operational controls.</p></div>
             <div><span>02</span><h3>Ship services</h3><p>React, Next.js, Node, Express, MongoDB, Redis, queues, and clean boundaries.</p></div>
             <div><span>03</span><h3>Operate systems</h3><p>Docker, Kubernetes, AWS, CI/CD, failure analysis, and the work after launch.</p></div>
           </div>

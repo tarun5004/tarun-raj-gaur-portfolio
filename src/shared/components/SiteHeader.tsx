@@ -5,6 +5,9 @@ type SiteHeaderProps = {
 };
 
 export function SiteHeader({ publication = false }: SiteHeaderProps) {
+  const portfolioUrl = process.env.NEXT_PUBLIC_PORTFOLIO_URL || '/';
+  const blogUrl = process.env.NEXT_PUBLIC_BLOG_URL || '/notes';
+
   if (publication) {
     return (
       <header className="publication-header site-header">
@@ -15,7 +18,7 @@ export function SiteHeader({ publication = false }: SiteHeaderProps) {
           <Link href="/notes">Latest</Link>
           <Link href="/notes#archive">Archive</Link>
           <Link href="/studio">Studio</Link>
-          <Link href="/">View portfolio <span aria-hidden="true">{'->'}</span></Link>
+          <Link href={portfolioUrl}>View portfolio <span aria-hidden="true">{'->'}</span></Link>
         </nav>
       </header>
     );
@@ -29,7 +32,8 @@ export function SiteHeader({ publication = false }: SiteHeaderProps) {
       <nav aria-label="Portfolio navigation">
         <Link href="/work">Work</Link>
         <Link href="/about">About</Link>
-        <Link href="/notes">Read notes <span aria-hidden="true">{'->'}</span></Link>
+        <Link href={blogUrl}>Read notes <span aria-hidden="true">{'->'}</span></Link>
+        <Link href="/studio">Studio</Link>
         <a href="/TARUN_cv%20(1).pdf" download>CV <span aria-hidden="true">↓</span></a>
       </nav>
     </header>
