@@ -54,24 +54,28 @@ export function StudioClient() {
     setEditingId(null);
   }
 
-  function submitNote(event: FormEvent<HTMLFormElement>) {
+  async function submitNote(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!form.title.trim() || !form.excerpt.trim() || !form.body.trim()) return setMessage('Title, excerpt, and body are required.');
     const updatedAt = new Date().toISOString().slice(0, 10);
     if (editingId) {
       const existing = notes.find((note) => note.id === editingId);
       if (!existing || existing.token !== token) return setMessage('That edit token does not unlock this note.');
+      const response = await fetch(`/api/posts/${editingId}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ...form, token }) });
+      if (!response.ok) return setMessage('The server rejected this edit token.');
       persist(notes.map((note) => note.id === editingId ? { ...note, ...form, updatedAt } : note));
-      setMessage('Note updated.');
+      setMessage('Note updated on the server.');
       resetForm();
       return;
     }
-    const editToken = crypto.randomUUID();
-    const note: Note = { ...form, id: crypto.randomUUID(), token: editToken, updatedAt };
+    const response = await fetch('/api/posts', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(form) });
+    if (!response.ok) return setMessage('The server could not save this note.');
+    const result = await response.json() as { post: Omit<Note, 'token'>; token: string };
+    const note: Note = { ...result.post, token: result.token };
     persist([note, ...notes]);
-    setToken(editToken);
+    setToken(result.token);
     setForm(blank);
-    setMessage('Note created. Save the token below for later edits or deletion.');
+    setMessage('Note saved on the server. Save the token below for later edits or deletion.');
   }
 
   function beginEdit(note: Note) {
@@ -83,9 +87,11 @@ export function StudioClient() {
     setMessage(`Editing ${note.title}.`);
   }
 
-  function deleteNote(note: Note) {
+  async function deleteNote(note: Note) {
     const provided = window.prompt('Enter this note edit token to delete it.');
     if (provided !== note.token) return setMessage('The edit token did not match.');
+    const response = await fetch(`/api/posts/${note.id}`, { method: 'DELETE', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ token: note.token }) });
+    if (!response.ok) return setMessage('The server rejected this delete token.');
     persist(notes.filter((item) => item.id !== note.id));
     if (editingId === note.id) resetForm();
     setMessage('Note deleted.');

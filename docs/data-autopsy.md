@@ -12,7 +12,7 @@
 
 - The public reader now has canonical posts, search, topics, archives, profiles, avatars, media blocks, and article metadata.
 - Follow now persists through a server API. Without `MONGODB_URI`, development uses an in-memory fallback and resets on process restart.
-- Editorial posts created by Studio are still browser-local. They must not be marketed as durable multi-author publishing until the posts API is connected to MongoDB.
+- Editorial posts created by Studio now use the posts API. With `MONGODB_URI`, they are durable MongoDB records; without it, the API uses a process-local development fallback and should not be marketed as production persistence.
 
 ## MongoDB collections
 

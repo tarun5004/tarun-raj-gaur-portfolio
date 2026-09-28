@@ -1,7 +1,8 @@
 import { getBlogDatabase, hasMongoConfig } from '@/lib/mongodb';
 
 type FollowEdge = { readerId: string; authorHandle: string; createdAt: string };
-const localFollows = new Set<string>();
+const globalForFollows = globalThis as typeof globalThis & { localFollows?: Set<string> };
+const localFollows = globalForFollows.localFollows ?? (globalForFollows.localFollows = new Set<string>());
 
 function edgeKey(readerId: string, authorHandle: string) {
   return `${readerId}:${authorHandle}`;
