@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { featuredPost, posts } from '@/features/publication/data/posts';
+import { PublishedLocalPosts } from '@/features/studio/components/PublishedLocalPosts';
 import { Footer } from '@/shared/components/Footer';
 import { SiteHeader } from '@/shared/components/SiteHeader';
 
@@ -29,6 +30,7 @@ export function PublicationHome() {
           </div>
         </section>
         <section className="publication-about"><p className="eyebrow">About this publication</p><div><h2>The portfolio shows what I build. These notes show how I think.</h2><Link className="text-link" href="/about">About Tarun <span aria-hidden="true">→</span></Link></div></section>
+        <PublishedLocalPosts />
         <Footer publication />
       </div>
     </main>

@@ -11,9 +11,9 @@ export function PortfolioHome() {
         <SiteHeader />
         <section className="portfolio-hero section-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Tarun Raj Gaur / engineer in progress</p>
+            <p className="eyebrow">Tarun Raj Gaur / full-stack AI systems engineer</p>
             <h1>I build the systems that make ambitious software hold together.</h1>
-            <p className="hero-dek">Full-stack, AI systems, backend architecture, and the unglamorous engineering that keeps a product trustworthy after the demo.</p>
+            <p className="hero-dek">I design and ship secure AI platforms, backend services, and developer tools, then investigate the failure modes that appear after the demo.</p>
             <div className="hero-actions">
               <Link className="button button-dark" href="/work">Explore the work <span aria-hidden="true">↗</span></Link>
               <Link className="text-link" href="/notes">Read the field notes <span aria-hidden="true">→</span></Link>
@@ -36,6 +36,11 @@ export function PortfolioHome() {
           <strong>queues</strong><span className="strip-dot">/</span>
           <strong>tenant boundaries</strong><span className="strip-dot">/</span>
           <strong>developer tools</strong>
+        </section>
+
+        <section className="recruiter-proof" aria-label="Recruiter snapshot">
+          <div><p className="eyebrow">Recruiter snapshot</p><h2>Enough signal to decide where to look next.</h2></div>
+          <div className="proof-grid"><div><strong>06</strong><span>public projects</span></div><div><strong>02</strong><span>flagship AI systems</span></div><div><strong>01</strong><span>clear working style</span></div><p>Full-stack delivery across Next.js, Node, MongoDB, Redis, Docker, AWS, Kubernetes, and AI platform design.</p></div>
         </section>
 
         <section className="work-section" id="work">

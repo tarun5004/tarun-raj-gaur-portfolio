@@ -58,6 +58,17 @@
 
 **Exit check:** production URL is stable, metadata is verified, downloads work, and analytics data is visible.
 
+## Phase 4.5: Editorial persistence
+
+**Outcome:** secure, multi-author publishing rather than a local prototype.
+
+- Add a server-side notes API and database.
+- Hash, expire, revoke, and rate-limit edit tokens.
+- Add author records, moderation state, audit history, and media upload validation.
+- Migrate local Studio records through an explicit export/import flow.
+
+**Exit check:** two browsers can safely create and edit independent notes, published content survives redeploys, and unauthorized mutation attempts are rejected server-side.
+
 ## Phase 5: Iteration
 
 **Outcome:** sustainable publishing rather than one-time launch.

@@ -14,6 +14,7 @@ export function SiteHeader({ publication = false }: SiteHeaderProps) {
         <nav aria-label="Publication navigation">
           <Link href="/notes">Latest</Link>
           <Link href="/notes#archive">Archive</Link>
+          <Link href="/studio">Studio</Link>
           <Link href="/">View portfolio <span aria-hidden="true">{'->'}</span></Link>
         </nav>
       </header>

@@ -9,6 +9,8 @@
 - Static data modules for navigation, projects, skills, education, social links, and verified repository metadata.
 - Vercel for hosting, preview deployments, and Web Analytics.
 
+For the current prototype, use browser `localStorage` only inside the Studio feature. Do not describe it as secure multi-author persistence.
+
 Redux Toolkit is not required for the first release because there is no server state, auth state, or multi-step application workflow. Add it only if a real cross-route client state need appears; local component state and URL search params should handle filters and navigation.
 
 ## Repository shape
@@ -37,6 +39,7 @@ Create two Vercel projects pointing at `apps/portfolio` and `apps/blog`. This pr
 - Prefer static generation for home, about, work, writing, and article routes.
 - Use server components by default.
 - Add client components only for motion, filters, reading progress, menu state, or analytics boundaries.
+- Add a client component for the local editorial Studio; keep public post rendering server-first.
 - Generate metadata, sitemap, RSS, and robots output at build time.
 
 ## Content structure

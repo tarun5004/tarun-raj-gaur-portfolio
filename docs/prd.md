@@ -7,7 +7,7 @@ Build two connected, frontend-only web experiences for Tarun Raj Gaur:
 1. A project-led portfolio that makes the work, engineering judgment, and proof visible immediately.
 2. A separate Substack-inspired technical publication for essays, analysis, photos, diagrams, and PDFs.
 
-Both sites will be deployed to Vercel, preferably as two Vercel projects from one monorepo. There will be no user accounts, authentication, backend API, database, CMS, or private content in the first release. Content is version-controlled in the repository and published through the normal Git workflow.
+Both sites will be deployed to Vercel, preferably as two Vercel projects from one monorepo. The public site remains readable without accounts. A browser-local editorial Studio is included as a prototype; real multi-author persistence and secure token authorization require a server-side API/database phase.
 
 ## 2. Goals
 
@@ -21,9 +21,8 @@ Both sites will be deployed to Vercel, preferably as two Vercel projects from on
 
 ## 3. Non-goals for v1
 
-- Authentication, user profiles, comments, likes, bookmarks, or subscriptions.
-- Admin dashboards or in-browser editing.
-- Custom backend services, database persistence, or server-side user data.
+- Public reader authentication, user profiles, comments, likes, bookmarks, or subscriptions.
+- A production-secure editor without a backend.
 - Combining the portfolio and publication into one overloaded landing page.
 - Copying the motion-web repository wholesale or reproducing its assets.
 - A full analytics data warehouse or personally identifying visitor profiles.
@@ -87,6 +86,7 @@ Recommended deployment shape:
 - `/work/trg-store` TRG Store case study, with collaboration attribution confirmed before publication.
 - `/writing` Portfolio writing bridge that links to the separate blog.
 - `/contact` Contact links and collaboration context. No contact form required for v1.
+- `/studio` Browser-local editorial workspace for token-based CRUD prototyping.
 
 ### Blog routes
 
@@ -110,6 +110,12 @@ Recommended deployment shape:
 - Support frontmatter for title, slug, summary, date, updated date, tags, reading time, cover image, featured state, and related project.
 - Render syntax-highlighted code, tables, callouts, links, images, captions, and downloadable PDFs.
 - Include canonical URLs, Open Graph metadata, RSS, sitemap, and robots metadata.
+
+### Editorial Studio
+
+- Create, read, update, publish/unpublish, and delete notes in browser-local storage.
+- Generate a per-note edit token and require it for edit/delete actions.
+- Clearly label the Studio as a local prototype until a server-side persistence phase is shipped.
 
 ### Navigation and interaction
 
@@ -156,3 +162,4 @@ Recommended deployment shape:
 - The blog has a Substack-like archive and at least three article templates with code and media.
 - CV download, external links, PDF links, sitemap, RSS, metadata, and analytics are verified in production.
 - Both apps build successfully and deploy through their Vercel projects from the main branch.
+- Studio CRUD works locally and its production security boundary is documented.
