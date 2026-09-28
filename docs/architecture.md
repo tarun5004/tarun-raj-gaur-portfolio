@@ -40,6 +40,7 @@ Create two Vercel projects pointing at `apps/portfolio` and `apps/blog`. This pr
 - Use server components by default.
 - Add client components only for motion, filters, reading progress, menu state, or analytics boundaries.
 - Add a client component for the local editorial Studio; keep public post rendering server-first.
+- Use MongoDB for authors, posts, and follow edges once `MONGODB_URI` is configured; keep Cloudinary as external media storage.
 - Generate metadata, sitemap, RSS, and robots output at build time.
 
 ## Content structure

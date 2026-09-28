@@ -4,11 +4,11 @@
 
 The public blog remains readable without authentication. `/studio` is an editorial workspace where a writer can create, edit, publish, unpublish, and delete notes using a per-note edit token.
 
-## Current implementation: local-first prototype
+## Current implementation: local-first editorial prototype with persistent follow API
 
 The current frontend-only app stores records in browser `localStorage` and generates a random token with `crypto.randomUUID()`. The token is shown to the author once and is required for later edit/delete actions in that browser.
 
-This is useful for validating the interaction and content model. It is **not secure authorization** and it is not cross-device persistence. Clearing storage loses the records and token.
+This is useful for validating the interaction and content model. It is **not secure authorization** and it is not cross-device persistence. Clearing storage loses the records and token. Follows now use the `/api/follows` server boundary and MongoDB when configured, with an in-memory development fallback.
 
 ## Note states
 
