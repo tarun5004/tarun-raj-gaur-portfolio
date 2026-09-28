@@ -1,0 +1,19 @@
+'use client';
+
+import Link from 'next/link';
+import { useState } from 'react';
+import { Avatar } from './Avatar';
+import { PostCard } from './PostCard';
+import { authors, posts, topics } from '@/features/publication/data/content';
+
+export function BlogHomeClient({ portfolioUrl }: { portfolioUrl: string }) {
+  const [query, setQuery] = useState('');
+  const [activeTopic, setActiveTopic] = useState('All notes');
+  const [menuOpen, setMenuOpen] = useState(false);
+  const filteredPosts = posts.filter((post) => {
+    const haystack = `${post.title} ${post.excerpt} ${post.topic} ${post.tags.join(' ')}`.toLowerCase();
+    return (activeTopic === 'All notes' || post.topic === activeTopic) && haystack.includes(query.toLowerCase());
+  });
+
+  return <main className="feed-app"><aside className={`feed-sidebar ${menuOpen ? 'is-open' : ''}`}><Link href="/" className="feed-logo">F<span>n</span></Link><nav><Link className="nav-active" href="/">⌂ <span>Home</span></Link><Link href="/archive">▤ <span>Archive</span></Link><Link href="/topics/AI%20systems">◌ <span>Explore</span></Link><Link href="/studio">✎ <span>Studio</span></Link></nav><div className="sidebar-bottom"><Link href={portfolioUrl}>↗ <span>Portfolio</span></Link><small>Field Notes / 2026</small></div></aside><div className="feed-main"><header className="feed-topbar"><button className="menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">☰</button><Link className="mobile-brand" href="/">Field Notes</Link><div className="feed-search"><span>⌕</span><input aria-label="Search notes" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search Field Notes" /></div><Link className="profile-chip" href="/profile/tarun"><Avatar author={authors[0]} size="small" /><span>Tarun</span></Link></header><section className="feed-intro"><div><p className="feed-kicker">A publication for useful thinking</p><h1>Field Notes</h1><p>Technical writing on GenAI workflows, backend systems, security, and building all the way to deployment.</p></div><Link className="create-button" href="/studio">+ Write a note</Link></section><section className="topic-tabs" aria-label="Filter by topic"><button className={activeTopic === 'All notes' ? 'active' : ''} onClick={() => setActiveTopic('All notes')}>All notes</button>{topics.map((topic) => <button className={activeTopic === topic ? 'active' : ''} key={topic} onClick={() => setActiveTopic(topic)}>{topic}</button>)}</section><section className="feed-list" aria-live="polite">{filteredPosts.length ? filteredPosts.map((post, index) => <PostCard post={post} featured={index === 0 && activeTopic === 'All notes' && !query} key={post.slug} />) : <div className="feed-empty"><strong>No notes found.</strong><p>Try another topic or search phrase.</p><button onClick={() => { setQuery(''); setActiveTopic('All notes'); }}>Clear filters</button></div>}</section></div><aside className="feed-right"><div className="right-search"><span>⌕</span><input aria-label="Search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search" /></div><section className="right-panel"><div className="panel-heading"><strong>People to follow</strong><Link href="/archive">See all</Link></div>{authors.map((author) => <Link className="person-row" href={`/profile/${author.handle}`} key={author.handle}><Avatar author={author} size="medium" /><span><strong>{author.name}</strong><small>{author.role}</small></span><button type="button">Follow</button></Link>)}</section><section className="right-panel reading-panel"><div className="panel-heading"><strong>Why Field Notes</strong></div><p>A calm place for systems thinking, project lessons, and notes you can actually use.</p><Link href="/about">About the publication →</Link></section></aside></main>;
+}

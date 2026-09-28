@@ -1,5 +1,22 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import { ArticleContent } from '@/features/publication/components/ArticleContent';
+import { Avatar } from '@/features/publication/components/Avatar';
+import { getAuthor, getPost, posts } from '@/features/publication/data/content';
+
+export function generateStaticParams() {
+  return posts.map((post) => ({ slug: post.slug }));
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const post = getPost(params.slug);
+  return { title: post ? `${post.title} | Field Notes` : 'Note not found | Field Notes', description: post?.excerpt };
+}
 
 export default function NotePage({ params }: { params: { slug: string } }) {
-  return <main className="blog-page"><div className="blog-shell"><header><Link href="/" className="brand">Field Notes <span>/ Tarun Raj Gaur</span></Link><nav><Link href="/">Latest</Link><Link href="/studio">Studio</Link></nav></header><article className="note"><p>Field Notes / {params.slug}</p><h1>{params.slug.replaceAll('-', ' ')}</h1><p className="note-lead">A working note about making production software more legible, reliable, and useful.</p><p>These articles are the editorial surface of the portfolio: a place to explain a system boundary, document a failure mode, or make an engineering decision easier for another person to inspect.</p><h2>The useful question</h2><p>What has to remain true when the happy path ends? The answer is usually found in the policy, the data boundary, the queue, or the evidence left behind after the request is complete.</p><Link href="/">Back to the archive {'->'}</Link></article></div></main>;
+  const post = getPost(params.slug);
+  if (!post) notFound();
+  const author = getAuthor(post.authorHandle)!;
+  return <main className="article-app"><div className="article-shell"><header className="article-nav"><Link href="/" className="brand">Field Notes <span>/ publication</span></Link><nav><Link href="/archive">Archive</Link><Link href={`/profile/${author.handle}`}>Profile</Link><Link href="/studio">Studio</Link></nav></header><article className="full-article"><header className="full-article-header"><p>{post.topic} / {post.publishedAt} / {post.readingTime}</p><h1>{post.title}</h1><p className="article-lead">{post.excerpt}</p><Link className="article-author" href={`/profile/${author.handle}`}><Avatar author={author} size="medium" /><span><strong>{author.name}</strong><small>{author.role}</small></span></Link></header><ArticleContent blocks={post.blocks} /><footer className="article-footer"><Link href="/">← Back to Field Notes</Link><Link href={`/topics/${encodeURIComponent(post.topic)}`}>More {post.topic} notes →</Link></footer></article></div></main>;
 }
