@@ -8,6 +8,7 @@ export type Project = {
   accent: string;
   href: string;
   repo: string;
+  liveDemo?: string;
   tags: string[];
   featured?: boolean;
 };
@@ -23,6 +24,7 @@ export const projects: Project[] = [
     accent: 'coral',
     href: '/work/proxiai',
     repo: 'https://github.com/tarun5004/ProxyAi',
+    liveDemo: 'https://www.proxiai.me/',
     tags: ['AI systems', 'Security', 'AWS'],
     featured: true,
   },

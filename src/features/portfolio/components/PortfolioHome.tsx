@@ -3,6 +3,7 @@ import { featuredProjects, projects } from '@/features/portfolio/data/projects';
 import { posts } from '@/features/publication/data/posts';
 import { Footer } from '@/shared/components/Footer';
 import { SiteHeader } from '@/shared/components/SiteHeader';
+import { SystemTrace } from './SystemTrace';
 
 export function PortfolioHome() {
   return (
@@ -50,16 +51,16 @@ export function PortfolioHome() {
           </div>
           <div className="featured-projects">
             {featuredProjects.map((project, index) => (
-              <Link className={`feature-project project-${project.accent}`} href={project.href} key={project.slug}>
+              <article className={`feature-project project-${project.accent}`} key={project.slug}>
                 <div className="project-topline"><span>0{index + 1}</span><span>{project.status}</span></div>
-                <div className="project-body">
+                <Link className="project-body" href={project.href}>
                   <p className="project-eyebrow">{project.eyebrow}</p>
                   <h3>{project.name}</h3>
                   <p>{project.description}</p>
-                </div>
+                </Link>
                 <div className="project-proof"><span>Proof</span>{project.proof}</div>
-                <span className="project-arrow" aria-hidden="true">↗</span>
-              </Link>
+                <div className="project-actions"><Link href={project.href}>Case study <span aria-hidden="true">↗</span></Link>{project.liveDemo ? <a href={project.liveDemo} target="_blank" rel="noreferrer">Live demo <span aria-hidden="true">↗</span></a> : null}</div>
+              </article>
             ))}
           </div>
           <div className="project-index">
@@ -70,6 +71,8 @@ export function PortfolioHome() {
             ))}
           </div>
         </section>
+
+        <SystemTrace />
 
         <section className="writing-bridge section-grid">
           <div><p className="eyebrow">Field notes</p><h2>The blog is where the decisions get unpacked.</h2><p className="bridge-copy">A separate publication for architecture notes, failure analysis, and the questions that survive the code review.</p><Link className="button button-coral" href="/notes">Enter Field Notes <span aria-hidden="true">↗</span></Link></div>
